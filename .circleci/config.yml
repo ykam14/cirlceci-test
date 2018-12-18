@@ -33,7 +33,7 @@ jobs:
           name: Run Build For AndroidTest
           command: ./gradlew assembleAndroidTest
           
-     - store_artifacts:
+      - store_artifacts:
           path: app/build/output/apk/release
           destination: release
 
