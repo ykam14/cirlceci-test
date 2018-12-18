@@ -43,17 +43,17 @@ jobs:
           
       - run:
           name: Confirm
-          command: ls -a ./app/build/output
+          command: ls -a ./app/build/outputs
 
       - run:
           name: Confirm
-          command: ls -a ./app/build/output/apk
+          command: ls -a ./app/build/outputs/apk
           
       - store_artifacts:
-          path: app/build/output/apk/release
+          path: app/build/outputs/apk/release
           destination: release
 
       - store_artifacts:
-          path: app/build/output/apk/androidTest
+          path: app/build/outputs/apk/androidTest
           destination: androidTest
 
