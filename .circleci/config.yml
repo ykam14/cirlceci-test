@@ -33,6 +33,10 @@ jobs:
           name: Run Build For AndroidTest
           command: ./gradlew assembleAndroidTest
           
+      - run:
+          name: Confirm
+          comman: ll
+          
       - store_artifacts:
           path: app/build/output/apk/release
           destination: release
