@@ -37,6 +37,18 @@ jobs:
           name: Confirm
           command: ls -a
           
+      - run:
+          name: Confirm
+          command: ls -a ./build
+          
+      - run:
+          name: Confirm
+          command: ls -a ./build/output
+
+      - run:
+          name: Confirm
+          command: ls -a ./build/output/apk
+          
       - store_artifacts:
           path: app/build/output/apk/release
           destination: release
