@@ -27,6 +27,11 @@ jobs:
       - run:
           name: Set Environmental Variables
           command: |
+            echo $JAVA_HOME
+          
+      - run:
+          name: Set Environmental Variables
+          command: |
             git submodule init && git submodule update
             sudo mkdir /usr/local/android-sdk-linux
             sudo wget https://dl.google.com/android/repository/android-ndk-r14-linux-x86_64.zip -P /usr/local/android-sdk-linux
