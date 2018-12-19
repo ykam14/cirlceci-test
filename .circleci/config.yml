@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Set Environmental Variables
           command: |
-            echo $JAVA_HOME
+            which javac
           
       - run:
           name: Set Environmental Variables
