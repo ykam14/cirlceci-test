@@ -1,11 +1,20 @@
 version: 2
-jobs:
+
+jobs:  
   build:
     working_directory: ~/code
+    
     docker:
       - image: circleci/android:api-26-alpha
+
     environment:
-      JVM_OPTS: -Xmx3200m
+      JAVA_HOME: /usr/lib/jvm/jdk1.8.0
+      ANDROID_HOME: /usr/local/android-sdk-linux
+      ANDROID_NDK_HOME: /usr/local/android-sdk-linux/ndk-bundle
+      ANDROID_NDK: /usr/local/android-sdk-linux/ndk-bundle
+      _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+      
     branches:
       only:
         - test
