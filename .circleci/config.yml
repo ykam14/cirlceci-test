@@ -29,8 +29,8 @@ jobs:
           command: |
             git submodule init && git submodule update
             wget https://dl.google.com/android/repository/android-ndk-r14-linux-x86_64.zip -P /usr/local/android-sdk-linux
+            sudo chmod +x /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             echo y | unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
-            sudo chmod +x /usr/local/android-sdk-linux/ndk-bundle 
             mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
             mkdir $ANDROID_HOME/licenses
             echo `cat android-sdk-license` > $ANDROID_HOME/licenses/android-sdk-license
