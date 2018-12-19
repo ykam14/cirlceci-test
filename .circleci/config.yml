@@ -8,7 +8,7 @@ jobs:
       - image: circleci/android:api-26-alpha
 
     environment:
-      JAVA_HOME: /usr/lib/jvm/jdk1.8.0
+      # JAVA_HOME: /usr/lib/jvm/jdk1.8.0
       ANDROID_HOME: /usr/local/android-sdk-linux
       ANDROID_NDK_HOME: /usr/local/android-sdk-linux/ndk-bundle
       ANDROID_NDK: /usr/local/android-sdk-linux/ndk-bundle
