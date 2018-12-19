@@ -22,6 +22,12 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          
+      - run:
+        name: test
+        command:
+          echo $ANDLOILO_KEYSTORE_PASSWORD
+          echo $ANDLOILO_KEY_PASSWORD
 
       - run:
           name: Run Tests
