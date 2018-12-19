@@ -24,12 +24,12 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           
       - run:
-        name: Environmental Variable Setting
-        command: echo 'ANDLOILO_KEY_PASSWORD='$ANDLOILO_KEY_PASSWORD >> gradle.properties
+          name: Environmental Variable Setting
+          command: echo 'ANDLOILO_KEY_PASSWORD='$ANDLOILO_KEY_PASSWORD >> gradle.properties
           
-       - run:
-        name: Environmental Variable Setting
-        command: echo 'ANDLOILO_KEYSTORE_PASSWORD='$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
+      - run:
+          name: Environmental Variable Setting
+          command: echo 'ANDLOILO_KEYSTORE_PASSWORD='$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
 
       - run:
           name: Run Tests
