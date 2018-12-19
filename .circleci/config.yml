@@ -28,7 +28,7 @@ jobs:
           name: Set Environmental Variables
           command: |
             git submodule init && git submodule update
-            mkdir /usr/local/android-sdk-linux
+            sudo mkdir /usr/local/android-sdk-linux
             wget https://dl.google.com/android/repository/android-ndk-r14-linux-x86_64.zip -P /usr/local/android-sdk-linux
             echo y | unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
