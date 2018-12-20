@@ -40,7 +40,6 @@ jobs:
             sudo mkdir $ANDROID_HOME/licenses
             echo sdkmanager --update
             echo y | sdkmanager --licenses
-            #echo `cat android-sdk-license` | sudo tee $ANDROID_HOME/licenses/android-sdk-license
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
             echo "" >> gradle.properties
