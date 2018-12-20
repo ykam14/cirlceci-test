@@ -36,13 +36,16 @@ jobs:
             sudo mkdir $ANDROID_HOME/licenses
             echo sdkmanager --update
             echo y | sdkmanager --licenses
-            ls -l $ANDROID_HOME/licenses
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
             echo "" >> gradle.properties
             echo "ANDLOILO_KEY_PASSWORD="$ANDLOILO_KEY_PASSWORD >> gradle.properties
             echo "ANDLOILO_KEYSTORE_PASSWORD="$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
             sudo mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+            
+      - run:
+          name: aaaa
+          command: ls -l $ANDROID_HOME/licenses
 
 
       - run:
