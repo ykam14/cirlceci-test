@@ -38,8 +38,8 @@ jobs:
             echo y | sudo unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             sudo mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
             sudo mkdir $ANDROID_HOME/licenses
-            echo `cat android-sdk-license` | sudo tee $ANDROID_HOME/licenses/android-sdk-license
             echo y | sdkmanager --licenses
+            echo `cat android-sdk-license` | sudo tee $ANDROID_HOME/licenses/android-sdk-license
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
             echo "" >> gradle.properties
