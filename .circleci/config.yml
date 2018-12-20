@@ -24,10 +24,6 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           
-      - run:
-          name: Set Environmental Variables
-          command: |
-            which javac
           
       - run:
           name: Set Environmental Variables
@@ -40,7 +36,7 @@ jobs:
             sudo mkdir $ANDROID_HOME/licenses
             echo sdkmanager --update
             echo y | sdkmanager --licenses
-            echo ls -l $ANDROID_HOME/licenses
+            ls -l $ANDROID_HOME/licenses
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
             echo "" >> gradle.properties
