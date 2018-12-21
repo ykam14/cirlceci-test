@@ -34,7 +34,7 @@ jobs:
             echo y | sudo unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             sudo mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
             sdkmanager --update
-            echo y | sdkmanager --licensea
+            echo y | sdkmanager --licenses
             sudo mkdir $ANDROID_HOME/licenses
             sudo cp -r /opt/android/sdk/licenses $ANDROID_HOME
             sudo chmod 777 $ANDROID_HOME/licenses
