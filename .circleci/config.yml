@@ -43,7 +43,7 @@ jobs:
             echo "ANDLOILO_KEYSTORE_PASSWORD="$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
             sudo mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
             
-      - run: sudo ls -a /usr/lib
+      - run: sudo ls -a /opt/android/sdk
 
 
       - run:
