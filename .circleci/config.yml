@@ -34,6 +34,7 @@ jobs:
             echo y | sudo unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             sudo mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
             sdkmanager --update
+            sdkmanager "build-tools;28.0.3" "platforms;android-28"
             echo y | sdkmanager --licenses
             sudo mkdir $ANDROID_HOME/licenses
             sudo cp -r /opt/android/sdk/licenses $ANDROID_HOME/licenses
@@ -44,7 +45,7 @@ jobs:
             echo "ANDLOILO_KEYSTORE_PASSWORD="$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
             sudo mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
             
-      - run: sudo ls -l $ANDROID_HOME
+      - run: sudo ls -l $ANDROID_HOME/licenses
 
 
       - run:
