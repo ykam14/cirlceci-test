@@ -35,6 +35,7 @@ jobs:
             sudo mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
             echo sdkmanager --update
             echo y | sdkmanager --licenses
+            echo sudo mkdir $ANDROID_HOME/licenses
             echo cp /opt/android/sdk/licenses $ANDROID_HOME/licenses
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
