@@ -33,10 +33,10 @@ jobs:
             sudo wget https://dl.google.com/android/repository/android-ndk-r14-linux-x86_64.zip -P /usr/local/android-sdk-linux
             echo y | sudo unzip -d /usr/local/android-sdk-linux /usr/local/android-sdk-linux/android-ndk-r14-linux-x86_64.zip
             sudo mv /usr/local/android-sdk-linux/android-ndk-r14 /usr/local/android-sdk-linux/ndk-bundle
-            echo sdkmanager --update
+            sdkmanager --update
             echo y | sdkmanager --licenses
-            echo sudo mkdir $ANDROID_HOME/licenses
-            echo cp -r /opt/android/sdk/licenses $ANDROID_HOME/licenses
+            sudo mkdir $ANDROID_HOME/licenses
+            sudo cp -r /opt/android/sdk/licenses $ANDROID_HOME/licenses
             echo "sdk.dir="$ANDROID_HOME > local.properties
             echo "ndk.dir="$ANDROID_NDK >> local.properties
             echo "" >> gradle.properties
