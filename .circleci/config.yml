@@ -36,8 +36,8 @@ jobs:
     - run:
         name: Upload DeployGate
         command: |
-        COMMENT_MESSAGE=`git log -1 --pretty=format:"%s"`
-        curl -F "token=${DEPLOYGATE_API_TOKEN}" -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "message=${COMMENT_MESSAGE}" https://deploygate.com/api/users/${DEPLOYGATE_USER_NAME}/apps
+        COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+        curl -F "token=${DEPLOYGATE_API_TOKEN}" -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "message=${COMMIT_MESSAGE}" https://deploygate.com/api/users/${DEPLOYGATE_USER_NAME}/apps
 workflows:
   version: 2
   workflow:
