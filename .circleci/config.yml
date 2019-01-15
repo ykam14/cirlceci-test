@@ -44,4 +44,4 @@ workflows:
         filters:
           branches:
             only:
-            - 738-circleCI2.0
+            - test
