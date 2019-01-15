@@ -19,9 +19,7 @@ jobs:
           echo "" >> gradle.properties
           echo "ANDLOILO_KEY_PASSWORD="$ANDLOILO_KEY_PASSWORD >> gradle.properties
           echo "ANDLOILO_KEYSTORE_PASSWORD="$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
-          echo mkdir ~/.gradle
-          touch ~/.gradle/gradle.properties
-          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+          mkdir ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
     - run:
         name: Download Dependencies
         command: ./gradlew androidDependencies
