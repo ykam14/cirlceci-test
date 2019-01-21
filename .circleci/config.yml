@@ -10,7 +10,7 @@ jobs:
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
-        name: Salck Notification
+        name: Shell test
         command: |
           sh scripts/run.sh
     - run:
