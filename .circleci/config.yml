@@ -3,40 +3,69 @@ jobs:
   build:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-26-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    branches:
-      only:
-        - test
 
+    - image: circleci/android:api-28-ndk-r17b
     steps:
-      - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-#      - run:
-#         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-#         command: sudo chmod +x ./gradlew
+    - checkout
+    - restore_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+    - run:
+        name: Shell test
+        command: |
+          sh scripts/run.sh
+    - run:
+        name: Set Properties
+        command: |
+          git submodule init && git submodule update
+          sdkmanager --update
+          echo y | sdkmanager --licenses
+          echo "sdk.dir="$ANDROID_HOME > local.properties
+          echo "ndk.dir="$ANDROID_NDK_HOME >> local.properties
+          echo "" >> gradle.properties
+          echo "ANDLOILO_KEY_PASSWORD="$ANDLOILO_KEY_PASSWORD >> gradle.properties
+          echo "ANDLOILO_KEYSTORE_PASSWORD="$ANDLOILO_KEYSTORE_PASSWORD >> gradle.properties
+          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+    - run:
+        name: Download Dependencies
+        command: ./gradlew androidDependencies
+    - save_cache:
+        paths:
+        - ~/.gradle
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+    - run:
+        name: Run Build For Release
+        command: ./gradlew assembleRelease
+    - run:
+        name: Run Build For AndroidTest
+        command: ./gradlew assembleAndroidTest -DtestBuildType=release
+    - run:
+        name: Upload DeployGate
+        command: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+          curl -F "token=${DEPLOYGATE_API_TOKEN}" -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "message=${COMMIT_MESSAGE}" https://deploygate.com/api/users/${DEPLOYGATE_USER_NAME}/apps
+  deploy:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-28-ndk-r17b
+    steps:
+      - requires:
+          - build
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          name: Confirm
+          command: echo merge!!
 
-      - run:
-          name: Run Tests
-          command: ./gradlew clean assembleRelease
-
-      - run:
-          name: Run Build For AndroidTest
-          command: ./gradlew assembleAndroidTest
-          
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - store_test_results:
-          path: app/build/test-results
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only:
+            - test
+    - deploy:
+        filters:
+          branches:
+            only:
+            - master
 
