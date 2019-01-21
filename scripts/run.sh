@@ -2,5 +2,5 @@
 cd scripts
 gem install bundler
 bundle install
-cd ../../
+cd ../
 ruby scripts/test.rb
