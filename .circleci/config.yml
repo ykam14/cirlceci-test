@@ -43,7 +43,7 @@ jobs:
         command: |
           COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
           curl -F "token=${DEPLOYGATE_API_TOKEN}" -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "message=${COMMIT_MESSAGE}" https://deploygate.com/api/users/${DEPLOYGATE_USER_NAME}/apps
-  merge:
+  deploy:
     - run:
         name: Confirm
         command: echo merge!!
@@ -56,7 +56,7 @@ workflows:
           branches:
             only:
             - test
-    - merge:
+    - deploy:
         filters:
           branches:
             only:
