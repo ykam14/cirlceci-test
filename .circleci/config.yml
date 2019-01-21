@@ -10,6 +10,10 @@ jobs:
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
+        name: Salck Notification
+        command: |
+          sh scripts/run.sh
+    - run:
         name: Set Properties
         command: |
           git submodule init && git submodule update
