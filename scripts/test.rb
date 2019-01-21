@@ -1,1 +1,1 @@
-puts env['CIRCLE_TAG']
+puts ENV['CIRCLE_TAG']
