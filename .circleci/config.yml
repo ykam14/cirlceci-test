@@ -45,8 +45,8 @@ jobs:
           curl -F "token=${DEPLOYGATE_API_TOKEN}" -F "file=@./app/build/outputs/apk/release/app-release-unsigned.apk" -F "message=${COMMIT_MESSAGE}" https://deploygate.com/api/users/${DEPLOYGATE_USER_NAME}/apps
   deploy:
     working_directory: ~/code
-      docker:
-        - image: circleci/android:api-28-ndk-r17b
+    docker:
+      - image: circleci/android:api-28-ndk-r17b
     steps:
       - requires:
           - build
